@@ -6,17 +6,17 @@
 [![devDependency Status](https://img.shields.io/david/dev/kangax/html-minifier.svg)](https://david-dm.org/kangax/html-minifier?type=dev)
 [![Gitter](https://img.shields.io/gitter/room/kangax/html-minifier.svg)](https://gitter.im/kangax/html-minifier)
 
-[HTMLMinifier](http://kangax.github.io/html-minifier/) is a highly **configurable**, **well-tested**, JavaScript-based HTML minifier.
+[HTMLMinifier](http://kangax.github.io/html-minifier/) 是一个高度 **可配置**, **经过良好测试**, 基于javascript的HTML压缩器。
 
-See [corresponding blog post](http://perfectionkills.com/experimenting-with-html-minifier/) for all the gory details of [how it works](http://perfectionkills.com/experimenting-with-html-minifier/#how_it_works), [description of each option](http://perfectionkills.com/experimenting-with-html-minifier/#options), [testing results](http://perfectionkills.com/experimenting-with-html-minifier/#field_testing) and [conclusions](http://perfectionkills.com/experimenting-with-html-minifier/#cost_and_benefits).
+关于它是 [如何工作](http://perfectionkills.com/experimenting-with-html-minifier/#how_it_works), [每个选项的描述](http://perfectionkills.com/experimenting-with-html-minifier/#options), [测试结果](http://perfectionkills.com/experimenting-with-html-minifier/#field_testing) 和 [结论](http://perfectionkills.com/experimenting-with-html-minifier/#cost_and_benefits) 等各种细节，请查看 [相关的博客](http://perfectionkills.com/experimenting-with-html-minifier/) 。
 
-[Test suite is available online](http://kangax.github.io/html-minifier/tests/).
+[在线获取测试套件](http://kangax.github.io/html-minifier/tests/).
 
-Also see corresponding [Ruby wrapper](https://github.com/stereobooster/html_minifier), and for Node.js, [Grunt plugin](https://github.com/gruntjs/grunt-contrib-htmlmin), [Gulp module](https://github.com/jonschlinkert/gulp-htmlmin), [Koa middleware wrapper](https://github.com/koajs/html-minifier) and [Express middleware wrapper](https://github.com/melonmanchan/express-minify-html).
+也可以查看 [Ruby版](https://github.com/stereobooster/html_minifier), 以及 Node.js版, [Grunt插件](https://github.com/gruntjs/grunt-contrib-htmlmin), [Gulp 模块](https://github.com/jonschlinkert/gulp-htmlmin), [koa中间件版](https://github.com/koajs/html-minifier) and [Express 中间件版](https://github.com/melonmanchan/express-minify-html).
 
-For lint-like capabilities take a look at [HTMLLint](https://github.com/kangax/html-lint).
+关于类似于 lint 的功能，可以看看 [HTMLLint](https://github.com/kangax/html-lint).
 
-## Minification comparison
+## 缩小化工具比较
 
 How does HTMLMinifier compare to other solutions — [HTML Minifier from Will Peavy](http://www.willpeavy.com/minifier/) (1st result in [Google search for "html minifier"](https://www.google.com/#q=html+minifier)) as well as [htmlcompressor.com](http://htmlcompressor.com) and [minimize](https://github.com/Swaagie/minimize)?
 
@@ -36,85 +36,85 @@ How does HTMLMinifier compare to other solutions — [HTML Minifier from Will Pe
 | [ES6 table](http://kangax.github.io/compat-table/es6/)                      | 4105                 | **3467**     | 3871     | n/a        | n/a                |
 | [ES6 draft](https://tc39.github.io/ecma262/)                                | 5512                 | **4919**     | 5066     | n/a        | n/a                |
 
-## Options Quick Reference
+## 可选项快速参考
 
-Most of the options are disabled by default.
+默认情况下，大部选项都是禁用的。
 
-| Option                         | Description     | Default |
+| 可选项                         | 描述     | 默认值 |
 |--------------------------------|-----------------|---------|
-| `caseSensitive`                | Treat attributes in case sensitive manner (useful for custom HTML tags) | `false` |
-| `collapseBooleanAttributes`    | [Omit attribute values from boolean attributes](http://perfectionkills.com/experimenting-with-html-minifier/#collapse_boolean_attributes) | `false` |
-| `collapseInlineTagWhitespace`  | Don't leave any spaces between `display:inline;` elements when collapsing. Must be used in conjunction with `collapseWhitespace=true` | `false` |
-| `collapseWhitespace`           | [Collapse white space that contributes to text nodes in a document tree](http://perfectionkills.com/experimenting-with-html-minifier/#collapse_whitespace) | `false` |
-| `conservativeCollapse`         | Always collapse to 1 space (never remove it entirely). Must be used in conjunction with `collapseWhitespace=true` | `false` |
-| `customAttrAssign`             | Arrays of regex'es that allow to support custom attribute assign expressions (e.g. `'<div flex?="{{mode != cover}}"></div>'`) | `[ ]` |
+| `caseSensitive`                | 以大小写敏感的方式处理属性 (用于自定义 HTML 标签) | `false` |
+| `collapseBooleanAttributes`    | [忽略布尔值属性的属性值](http://perfectionkills.com/experimenting-with-html-minifier/#collapse_boolean_attributes) | `false` |
+| `collapseInlineTagWhitespace`  | 当压缩元素时，不要在内联元素 `display:inline;` 间留下空格。必须与 `collapseWhitespace=true` 结合使用 | `false` |
+| `collapseWhitespace`           | [ 在文档树中压缩文本节点的空格 ](http://perfectionkills.com/experimenting-with-html-minifier/#collapse_whitespace) | `false` |
+| `conservativeCollapse`         | 总是压缩至一个空白字符 (永远不要完全删除). 必须同 `collapseWhitespace=true` 结合使用 | `false` |
+| `customAttrAssign`             | 允许支持自定义属性分配表达式的正则表达式数组 (例如. `'<div flex?="{{mode != cover}}"></div>'`) | `[ ]` |
 | `customAttrCollapse`           | Regex that specifies custom attribute to strip newlines from (e.g. `/ng-class/`) | |
 | `customAttrSurround`           | Arrays of regex'es that allow to support custom attribute surround expressions (e.g. `<input {{#if value}}checked="checked"{{/if}}>`) | `[ ]` |
-| `customEventAttributes`        | Arrays of regex'es that allow to support custom event attributes for `minifyJS` (e.g. `ng-click`) | `[ /^on[a-z]{3,}$/ ]` |
-| `decodeEntities`               | Use direct Unicode characters whenever possible | `false` |
-| `html5`                        | Parse input according to HTML5 specifications | `true` |
-| `ignoreCustomComments`         | Array of regex'es that allow to ignore certain comments, when matched | `[ /^!/ ]` |
-| `ignoreCustomFragments`        | Array of regex'es that allow to ignore certain fragments, when matched (e.g. `<?php ... ?>`, `{{ ... }}`, etc.)  | `[ /<%[\s\S]*?%>/, /<\?[\s\S]*?\?>/ ]` |
+| `customEventAttributes`        | 允许为 `minifyJS` 提供定制事件属性的正则表达式数组。 (e.g. `ng-click`) | `[ /^on[a-z]{3,}$/ ]` |
+| `decodeEntities`               | 尽可能使用直接的Unicode字符 | `false` |
+| `html5`                        | 根据 HTML5 规范解析输入的内容 | `true` |
+| `ignoreCustomComments`         | 当匹配正则表达式数组时，允许忽略某些注释 | `[ /^!/ ]` |
+| `ignoreCustomFragments`        | 当匹配正则表达式数组时，允许忽略某些片段 (e.g. `<?php ... ?>`, `{{ ... }}`, etc.)  | `[ /<%[\s\S]*?%>/, /<\?[\s\S]*?\?>/ ]` |
 | `includeAutoGeneratedTags`     | Insert tags generated by HTML parser | `true` |
-| `keepClosingSlash`             | Keep the trailing slash on singleton elements | `false` |
-| `maxLineLength`                | Specify a maximum line length. Compressed output will be split by newlines at valid HTML split-points |
-| `minifyCSS`                    | Minify CSS in style elements and style attributes (uses [clean-css](https://github.com/jakubpawlowicz/clean-css)) | `false` (could be `true`, `Object`, `Function(text)`) |
-| `minifyJS`                     | Minify JavaScript in script elements and event attributes (uses [UglifyJS](https://github.com/mishoo/UglifyJS2)) | `false` (could be `true`, `Object`, `Function(text, inline)`) |
-| `minifyURLs`                   | Minify URLs in various attributes (uses [relateurl](https://github.com/stevenvachon/relateurl)) | `false` (could be `String`, `Object`, `Function(text)`) |
-| `preserveLineBreaks`           | Always collapse to 1 line break (never remove it entirely) when whitespace between tags include a line break. Must be used in conjunction with `collapseWhitespace=true` | `false` |
-| `preventAttributesEscaping`    | Prevents the escaping of the values of attributes | `false` |
+| `keepClosingSlash`             | 在单标签元素上保留尾部的斜杠 | `false` |
+| `maxLineLength`                | 指定最大行长度。 压缩输出的内容将在有效的html分割点上换行。 |
+| `minifyCSS`                    | 最小化 style 元素和 style 属性中的CSS (使用 [clean-css](https://github.com/jakubpawlowicz/clean-css)) | `false` (could be `true`, `Object`, `Function(text)`) |
+| `minifyJS`                     | 最小化 script 元素和事件属性中的javascript (使用 [UglifyJS](https://github.com/mishoo/UglifyJS2)) | `false` (could be `true`, `Object`, `Function(text, inline)`) |
+| `minifyURLs`                   | 最小化各种属性中的URL (使用 [relateurl](https://github.com/stevenvachon/relateurl)) | `false` (could be `String`, `Object`, `Function(text)`) |
+| `preserveLineBreaks`           | 当标签之间的换行有空白时，永远压缩成一行(永远不完全删除)。必须结合 `collapseWhitespace=true` 一起使用 | `false` |
+| `preventAttributesEscaping`    | 防止属性值的转义 | `false` |
 | `processConditionalComments`   | Process contents of conditional comments through minifier | `false` |
 | `processScripts`               | Array of strings corresponding to types of script elements to process through minifier (e.g. `text/ng-template`, `text/x-handlebars-template`, etc.) | `[ ]` |
-| `quoteCharacter`               | Type of quote to use for attribute values (' or ") | |
-| `removeAttributeQuotes`        | [Remove quotes around attributes when possible](http://perfectionkills.com/experimenting-with-html-minifier/#remove_attribute_quotes) | `false` |
-| `removeComments`               | [Strip HTML comments](http://perfectionkills.com/experimenting-with-html-minifier/#remove_comments) | `false` |
-| `removeEmptyAttributes`        | [Remove all attributes with whitespace-only values](http://perfectionkills.com/experimenting-with-html-minifier/#remove_empty_or_blank_attributes) | `false` (could be `true`, `Function(attrName, tag)`) |
-| `removeEmptyElements`          | [Remove all elements with empty contents](http://perfectionkills.com/experimenting-with-html-minifier/#remove_empty_elements) | `false` |
-| `removeOptionalTags`           | [Remove optional tags](http://perfectionkills.com/experimenting-with-html-minifier/#remove_optional_tags) | `false` |
-| `removeRedundantAttributes`    | [Remove attributes when value matches default.](http://perfectionkills.com/experimenting-with-html-minifier/#remove_redundant_attributes) | `false` |
-| `removeScriptTypeAttributes`   | Remove `type="text/javascript"` from `script` tags. Other `type` attribute values are left intact | `false` |
-| `removeStyleLinkTypeAttributes`| Remove `type="text/css"` from `style` and `link` tags. Other `type` attribute values are left intact | `false` |
-| `removeTagWhitespace`          | Remove space between attributes whenever possible. **Note that this will result in invalid HTML!** | `false` |
-| `sortAttributes`               | [Sort attributes by frequency](#sorting-attributes--style-classes) | `false` |
-| `sortClassName`                | [Sort style classes by frequency](#sorting-attributes--style-classes) | `false` |
-| `trimCustomFragments`          | Trim white space around `ignoreCustomFragments`. | `false` |
-| `useShortDoctype`              | [Replaces the `doctype` with the short (HTML5) doctype](http://perfectionkills.com/experimenting-with-html-minifier/#use_short_doctype) | `false` |
+| `quoteCharacter`               | 用于属性值的引号 (' 或 ") | |
+| `removeAttributeQuotes`        | [在可能的情况下，删除属性值的引号](http://perfectionkills.com/experimenting-with-html-minifier/#remove_attribute_quotes) | `false` |
+| `removeComments`               | [去除 HTML 注释](http://perfectionkills.com/experimenting-with-html-minifier/#remove_comments) | `false` |
+| `removeEmptyAttributes`        | [删除所有空白值的属性](http://perfectionkills.com/experimenting-with-html-minifier/#remove_empty_or_blank_attributes) | `false` (could be `true`, `Function(attrName, tag)`) |
+| `removeEmptyElements`          | [删除所有空内容的元素](http://perfectionkills.com/experimenting-with-html-minifier/#remove_empty_elements) | `false` |
+| `removeOptionalTags`           | [删除可选的标签](http://perfectionkills.com/experimenting-with-html-minifier/#remove_optional_tags) | `false` |
+| `removeRedundantAttributes`    | [删除值为默认值的属性](http://perfectionkills.com/experimenting-with-html-minifier/#remove_redundant_attributes) | `false` |
+| `removeScriptTypeAttributes`   | 删除 `script` 标签的 `type="text/javascript"`. `type` 属性为其它值时保持不变 | `false` |
+| `removeStyleLinkTypeAttributes`| 删除 `style` 和 `link` 标签的 `type="text/css"`. `type` 属性为其它值时保持不变 | `false` |
+| `removeTagWhitespace`          | 尽可能在属性之间移除空格。 **注意：这可能导致无效的HTML** | `false` |
+| `sortAttributes`               | [根据频率对属性进行排序](#sorting-attributes--style-classes) | `false` |
+| `sortClassName`                | [根据频率对样式类进行排序](#sorting-attributes--style-classes) | `false` |
+| `trimCustomFragments`          | 修剪 `ignoreCustomFragments` 周围的空白. | `false` |
+| `useShortDoctype`              | [用短的 `doctype` (HTML5) 替换 `doctype` ](http://perfectionkills.com/experimenting-with-html-minifier/#use_short_doctype) | `false` |
 
-### Sorting attributes / style classes
+### 对属性/样式类排序
 
 Minifier options like `sortAttributes` and `sortClassName` won't impact the plain-text size of the output. However, they form long repetitive chains of characters that should improve compression ratio of gzip used in HTTP compression.
 
-## Special cases
+## 特殊情况
 
-### Ignoring chunks of markup
+### 忽略大块标记
 
 If you have chunks of markup you would like preserved, you can wrap them `<!-- htmlmin:ignore -->`.
 
-### Preserving SVG tags
+### 保留 SVG 标签
 
 SVG tags are automatically recognized, and when they are minified, both case-sensitivity and closing-slashes are preserved, regardless of the minification settings used for the rest of the file.
 
-### Working with invalid markup
+### 操作无效的标记
 
-HTMLMinifier **can't work with invalid or partial chunks of markup**. This is because it parses markup into a tree structure, then modifies it (removing anything that was specified for removal, ignoring anything that was specified to be ignored, etc.), then it creates a markup out of that tree and returns it.
+HTMLMinifier **不能操作无效的或部分的标记**. 这是因为它将标记解析为树结构,  然后修改它 (删除指定删除的内容, 忽略指定忽略的内容, etc.), 然后从该树结构中创建并返回标记。
 
-Input markup (e.g. `<p id="">foo`)
-
-↓
-
-Internal representation of markup in a form of tree (e.g. `{ tag: "p", attr: "id", children: ["foo"] }`)
+输入标记 (e.g. `<p id="">foo`)
 
 ↓
 
-Transformation of internal representation (e.g. removal of `id` attribute)
+标记以一种树的形式的内部表示 (e.g. `{ tag: "p", attr: "id", children: ["foo"] }`)
 
 ↓
 
-Output of resulting markup (e.g. `<p>foo</p>`)
+转换的内部表示 (e.g. removal of `id` attribute)
+
+↓
+
+输出结果标记 (e.g. `<p>foo</p>`)
 
 HTMLMinifier can't know that original markup was only half of the tree; it does its best to try to parse it as a full tree and it loses information about tree being malformed or partial in the beginning. As a result, it can't create a partial/malformed tree at the time of the output.
 
-## Installation Instructions
+## 安装使用说明
 
 From NPM for use as a command line app:
 
@@ -136,7 +136,7 @@ cd html-minifier
 npm link .
 ```
 
-## Usage
+## 用法
 
 For command line usage please see `html-minifier --help`
 
@@ -150,7 +150,7 @@ var result = minify('<p title="blah" id="moo">foo</p>', {
 result; // '<p title=blah id=moo>foo</p>'
 ```
 
-## Running benchmarks
+## 运行基准的测试
 
 Benchmarks for minified HTML:
 
